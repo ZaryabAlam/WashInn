@@ -32,6 +32,9 @@ dependencies:
   time_range: ^0.4.0
   awesome_dropdown: ^0.0.2
   crypto: ^3.0.1
+  smooth_page_indicator: ^1.0.0
+  shared_preferences: ^2.0.0
+  flutter_advanced_drawer: ^1.0.0
 
 dev_dependencies:
   flutter_test:
@@ -53,6 +56,9 @@ flutter:
     - assets/wlogo1.png
     - assets/wlogo2.png
     - assets/wlogo3.png
+    - assets/obs1.png
+    - assets/obs2.png
+    - assets/obs3.png
     - assets/thank.png
     - assets/a1.png
     - assets/a2.png
@@ -62,6 +68,8 @@ flutter:
     - assets/b1.png
     - assets/b2.png
     - assets/b3.png
+    - assets/pic.png
+    - assets/qrcode.png
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware.

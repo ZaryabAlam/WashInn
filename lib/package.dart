@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:task2/home.dart';
 import 'package:task2/last.dart';
+import 'package:task2/reserve.dart';
 
 class Package extends StatefulWidget {
   @override
@@ -116,7 +117,7 @@ class Card extends StatelessWidget {
     return GestureDetector(
       onTap: () {
         Navigator.of(context)
-            .push(MaterialPageRoute(builder: (context) => Home()));
+            .push(MaterialPageRoute(builder: (context) => Reserve()));
       },
       child: Container(
         margin:

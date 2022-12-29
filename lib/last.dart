@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:task2/first.dart';
-import 'package:task2/home.dart';
 import 'package:task2/home.dart';
 import 'dart:math';
 
@@ -147,7 +145,7 @@ class _LastState extends State<Last> {
                           shadowColor: Colors.transparent),
                       onPressed: () {
                         Navigator.of(context).push(
-                            MaterialPageRoute(builder: (context) => First()));
+                            MaterialPageRoute(builder: (context) => Home()));
                       },
                       child: Text(
                         "Home",
