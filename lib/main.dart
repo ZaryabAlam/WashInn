@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
+import 'package:outline_gradient_button/outline_gradient_button.dart';
 import 'home.dart';
 
 Future main() async {
@@ -105,24 +106,24 @@ class _Page1State extends State<Page1> {
                   subtitle:
                       'Wash your cloths with modern machines exclusively'),
               buildPage(
-                  color: Color(0xFFd7fada),
+                  color: Colors.white,
                   urlImage: 'assets/obs2.png',
-                  title: "REUSE",
+                  title: "DRY it!",
+                  colort: Colors.black,
+                  subtitle: 'Unwrinkling your cloths in no more a challenge '),
+              buildPage(
+                  color: Colors.white,
+                  urlImage: 'assets/obs3.png',
+                  title: "GAIN it!",
+                  colort: Colors.black,
+                  subtitle: 'You deserve that attractiveness with your looks '),
+              buildPage(
+                  color: Colors.blue[200],
+                  urlImage: 'assets/wlogo1.png',
+                  title: "All-in one place!",
                   colort: Colors.black,
                   subtitle:
-                      'Reuse items as much as you can before replacing them.'),
-              buildPage(
-                  color: Color(0xFFd7fada),
-                  urlImage: 'assets/obs3.png',
-                  title: "RECYCLE",
-                  colort: Colors.black,
-                  subtitle: 'Recycle items wherever possible.'),
-              buildPage(
-                  color: Color(0xFF00964c),
-                  urlImage: 'assets/wlogo1.png',
-                  title: "Happy World",
-                  colort: Colors.black,
-                  subtitle: 'All these efforts for our Happier World.'),
+                      'We have everything under control specially for YOU!'),
             ],
           ),
         ),
@@ -134,10 +135,13 @@ class _Page1State extends State<Page1> {
             ? Stack(
                 children: [
                   Container(
-                      height: 80,
-                      decoration: BoxDecoration(color: Color(0xFF00964c))),
+                      height: 100,
+                      decoration: BoxDecoration(
+                        color: Colors.blue[200],
+                      )),
                   TextButton(
                     style: TextButton.styleFrom(
+                        elevation: 5,
                         shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(80)),
                         primary: Colors.black,
@@ -157,38 +161,53 @@ class _Page1State extends State<Page1> {
             : Stack(
                 children: [
                   Container(
-                      height: 80,
+                      height: 100,
                       decoration: BoxDecoration(color: Colors.white)),
                   Container(
+                    height: _h * 0.09,
                     decoration: BoxDecoration(
-                        color: Colors.blue[100],
-                        borderRadius: BorderRadius.circular(80)),
-                    padding: const EdgeInsets.symmetric(horizontal: 20),
-                    height: 60,
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        TextButton(
-                            onPressed: () => controller.jumpToPage(3),
-                            child:
-                                Text("Skip", style: TextStyle(fontSize: 17))),
-                        Center(
-                          child: SmoothPageIndicator(
-                            controller: controller,
-                            count: 4,
-                            effect: SwapEffect(activeDotColor: Colors.blue),
-                            onDotClicked: (index) => controller.animateToPage(
-                                index,
-                                duration: Duration(milliseconds: 500),
-                                curve: Curves.easeInOut),
-                          ),
+                      boxShadow: [
+                        BoxShadow(
+                          color: Colors.grey.withOpacity(0.5),
+                          spreadRadius: 2,
+                          blurRadius: 2,
+                          offset: Offset(0, 2),
                         ),
-                        TextButton(
-                            onPressed: () => controller.nextPage(
-                                duration: Duration(milliseconds: 500),
-                                curve: Curves.easeInOut),
-                            child: Text("Next", style: TextStyle(fontSize: 17)))
                       ],
+                      borderRadius: BorderRadius.circular(50),
+                    ),
+                    child: OutlineGradientButton(
+                      backgroundColor: Colors.white,
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          TextButton(
+                              onPressed: () => controller.jumpToPage(3),
+                              child:
+                                  Text("Skip", style: TextStyle(fontSize: 17))),
+                          Center(
+                            child: SmoothPageIndicator(
+                              controller: controller,
+                              count: 4,
+                              effect: SwapEffect(activeDotColor: Colors.blue),
+                              onDotClicked: (index) => controller.animateToPage(
+                                  index,
+                                  duration: Duration(milliseconds: 500),
+                                  curve: Curves.easeInOut),
+                            ),
+                          ),
+                          TextButton(
+                              onPressed: () => controller.nextPage(
+                                  duration: Duration(milliseconds: 500),
+                                  curve: Curves.easeInOut),
+                              child:
+                                  Text("Next", style: TextStyle(fontSize: 17)))
+                        ],
+                      ),
+                      gradient: LinearGradient(
+                          colors: [Colors.cyan[300], Colors.blue[800]]),
+                      strokeWidth: 3,
+                      radius: Radius.circular(50),
                     ),
                   ),
                 ],

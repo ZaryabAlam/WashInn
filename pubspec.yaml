@@ -35,10 +35,17 @@ dependencies:
   smooth_page_indicator: ^1.0.0
   shared_preferences: ^2.0.0
   flutter_advanced_drawer: ^1.0.0
+  outline_gradient_button: ^1.0.0+2
+  url_launcher: ^5.6.0
+  flutter_native_splash: ^1.2.0
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
+
+flutter_native_splash:
+  color: '#ffffff'
+  image: assets/splash.png
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
@@ -56,6 +63,7 @@ flutter:
     - assets/wlogo1.png
     - assets/wlogo2.png
     - assets/wlogo3.png
+    - assets/splash.png
     - assets/obs1.png
     - assets/obs2.png
     - assets/obs3.png
@@ -70,6 +78,10 @@ flutter:
     - assets/b3.png
     - assets/pic.png
     - assets/qrcode.png
+    - assets/google.png
+    - assets/facebook.png
+    - assets/github.png
+    - assets/linkedin.png
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware.

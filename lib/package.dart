@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:task2/home.dart';
-import 'package:task2/last.dart';
 import 'package:task2/reserve.dart';
 
 class Package extends StatefulWidget {

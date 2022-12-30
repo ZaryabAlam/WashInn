@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:outline_gradient_button/outline_gradient_button.dart';
 import 'package:task2/extra.dart';
 import 'package:task2/package.dart';
 import 'package:flutter_advanced_drawer/flutter_advanced_drawer.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class Home extends StatefulWidget {
   @override
@@ -10,19 +12,6 @@ class Home extends StatefulWidget {
 
 class _HomeState extends State<Home> {
   final _advancedDrawerController = AdvancedDrawerController();
-  final kInnerDecoration = BoxDecoration(
-    color: Colors.white,
-    border: Border.all(color: Colors.white),
-    borderRadius: BorderRadius.circular(32),
-  );
-
-  final kGradientBoxDecoration = BoxDecoration(
-    gradient: LinearGradient(colors: [Colors.cyan[300], Colors.blue[800]]),
-    border: Border.all(
-      color: Colors.transparent,
-    ),
-    borderRadius: BorderRadius.circular(32),
-  );
 
   @override
   Widget build(BuildContext context) {
@@ -37,7 +26,7 @@ class _HomeState extends State<Home> {
     );
 
     return AdvancedDrawer(
-      backdropColor: Colors.blue,
+      backdropColor: Colors.blue[600],
       controller: _advancedDrawerController,
       child: Scaffold(
         backgroundColor: Colors.white,
@@ -61,11 +50,10 @@ class _HomeState extends State<Home> {
         ),
         body: SingleChildScrollView(
           child: Column(
-            mainAxisAlignment: MainAxisAlignment.start,
-            crossAxisAlignment: CrossAxisAlignment.center,
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               SizedBox(
-                height: _h * 0.07,
+                height: _h * 0.06,
               ),
 ///////////////////////////////////////////////////////////////////////
               Center(
@@ -79,7 +67,7 @@ class _HomeState extends State<Home> {
                 ),
               ),
               SizedBox(
-                height: _h * 0.04,
+                height: _h * 0.06,
               ),
               Container(
                 padding: EdgeInsets.only(left: 20),
@@ -90,7 +78,7 @@ class _HomeState extends State<Home> {
                       child: Text(
                         "Best Rates,",
                         style: TextStyle(
-                            fontSize: 35,
+                            fontSize: 37,
                             fontWeight: FontWeight.w900,
                             color: Colors.blue[600]),
                       ),
@@ -100,7 +88,7 @@ class _HomeState extends State<Home> {
                       child: Text(
                         "Ideal Service,",
                         style: TextStyle(
-                            fontSize: 35,
+                            fontSize: 38,
                             fontWeight: FontWeight.w900,
                             color: Colors.blue[600]),
                       ),
@@ -110,7 +98,7 @@ class _HomeState extends State<Home> {
                       child: Text(
                         "Perfect Cleaning!",
                         style: TextStyle(
-                            fontSize: 35,
+                            fontSize: 40,
                             fontWeight: FontWeight.w900,
                             color: Colors.blue[600]),
                       ),
@@ -119,61 +107,118 @@ class _HomeState extends State<Home> {
                 ),
               ),
               SizedBox(
-                height: _h * 0.06,
+                height: _h * 0.10,
               ),
-              GestureDetector(
-                onTap: () {
-                  Navigator.of(context)
-                      .push(MaterialPageRoute(builder: (context) => Package()));
-                },
-                child: Container(
-                  child: Padding(
-                    padding: const EdgeInsets.all(2.0),
-                    child: Container(
-                      height: _h * 0.08,
-                      width: _w * 0.85,
-                      child: Center(child: Text("Get Started")),
-                      decoration: kInnerDecoration,
+
+              //
+              Container(
+                height: _h * 0.08,
+                width: _w * 0.85,
+                decoration: BoxDecoration(
+                  boxShadow: [
+                    BoxShadow(
+                      color: Colors.grey.withOpacity(0.5),
+                      spreadRadius: 2,
+                      blurRadius: 2,
+                      offset: Offset(0, 2),
                     ),
-                  ),
-                  height: 66.0,
-                  decoration: kGradientBoxDecoration,
+                  ],
+                  borderRadius: BorderRadius.circular(50),
+                ),
+                child: OutlineGradientButton(
+                  onTap: () {
+                    Navigator.of(context).push(
+                        MaterialPageRoute(builder: (context) => Package()));
+                  },
+                  backgroundColor: Colors.white,
+                  child: Center(child: Text('Register')),
+                  gradient: LinearGradient(
+                      colors: [Colors.cyan[300], Colors.blue[800]]),
+                  strokeWidth: 3,
+                  radius: Radius.circular(50),
                 ),
               ),
-              Center(
-                  child: Container(
-                      decoration: BoxDecoration(
-                          boxShadow: [
-                            BoxShadow(
-                              color: Colors.grey.withOpacity(0.5),
-                              spreadRadius: 2,
-                              blurRadius: 2,
-                              offset: Offset(0, 2),
-                            )
-                          ],
-                          borderRadius: BorderRadius.circular(50),
-                          gradient: LinearGradient(
-                              colors: [Colors.cyan[500], Colors.blue[800]])),
-                      height: _h * 0.08,
-                      width: _w * 0.85,
-                      child: ElevatedButton(
-                          style: ElevatedButton.styleFrom(
-                              primary: Colors.transparent,
-                              shadowColor: Colors.transparent),
-                          onPressed: () {
-                            Navigator.of(context).push(MaterialPageRoute(
-                                builder: (context) => Package()));
-                          },
-                          child: Text(
-                            "Get Started",
-                            style: TextStyle(fontWeight: FontWeight.w300),
-                          )))),
-              MyOutlinedButton(
-                onPressed: () {},
-                gradient: LinearGradient(
-                    colors: [Colors.cyan[500], Colors.blue[800]]),
-                child: Text('OutlinedButton'),
-              )
+              SizedBox(
+                height: _h * 0.09,
+              ),
+///////////////////////////////////////////////////////////////////////
+              Text(
+                "---- Follow us for latest updates -----",
+                style: TextStyle(
+                    fontWeight: FontWeight.w100,
+                    fontSize: 17,
+                    color: Colors.grey[700]),
+              ),
+              SizedBox(
+                height: _h * 0.015,
+              ),
+///////////////////////////////////////////////////////////////////////
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Container(
+                    height: _h * 0.1,
+                    width: _w * 0.2,
+                    child: IconButton(
+                        icon: Image.asset(
+                          "assets/google.png",
+                          fit: BoxFit.cover,
+                        ),
+                        onPressed: () async {
+                          const url =
+                              'https://accounts.google.com/v3/signin/identifier?dsh=S-251231302%3A1663782779691460&continue=https%3A%2F%2Fmail.google.com%2Fmail%2F%26ogbl%2F&emr=1&ltmpl=default&ltmplcache=2&osid=1&passive=true&rm=false&scc=1&service=mail&ss=1&flowName=GlifWebSignIn&flowEntry=ServiceLogin&ifkv=AQDHYWov1HYEBHuWBN_m80xuHQYWeafjv3SjrJPJWHgKO0hkWIU7vbUzR1H1up9hCzvJK9h74UO5iw';
+                          if (await canLaunch(url)) {
+                            await launch(url);
+                          } else {
+                            throw 'Could not launch $url';
+                          }
+                        }),
+                  ),
+                  Container(
+                    height: _h * 0.1,
+                    width: _w * 0.2,
+                    child: IconButton(
+                        icon: Image.asset("assets/facebook.png"),
+                        onPressed: () async {
+                          const url = 'https://www.facebook.com/zaryabalam35';
+                          if (await canLaunch(url)) {
+                            await launch(url);
+                          } else {
+                            throw 'Could not launch $url';
+                          }
+                        }),
+                  ),
+                  Container(
+                    height: _h * 0.1,
+                    width: _w * 0.2,
+                    child: IconButton(
+                        icon: Image.asset("assets/github.png"),
+                        onPressed: () async {
+                          const url = 'https://github.com/ZaryabAlam';
+                          if (await canLaunch(url)) {
+                            await launch(url);
+                          } else {
+                            throw 'Could not launch $url';
+                          }
+                        }),
+                  ),
+                  Container(
+                    height: _h * 0.1,
+                    width: _w * 0.2,
+                    child: IconButton(
+                        icon: Image.asset("assets/linkedin.png"),
+                        onPressed: () async {
+                          const url =
+                              'https://www.linkedin.com/in/zaryab-alam-660b7a187/';
+                          if (await canLaunch(url)) {
+                            await launch(url);
+                          } else {
+                            throw 'Could not launch $url';
+                          }
+                        }),
+                  ),
+                ],
+              ),
               // SizedBox(
               //   height: _h * 0.15,
               // ),
@@ -296,47 +341,5 @@ class _HomeState extends State<Home> {
     // NOTICE: Manage Advanced Drawer state through the Controller.
     // _advancedDrawerController.value = AdvancedDrawerValue.visible();
     _advancedDrawerController.showDrawer();
-  }
-}
-
-/////////////////////////////////////////////////////////////////////////////////////////////////
-////////////////////////////////////////////////////////////////////////////////////////////////
-class MyOutlinedButton extends StatelessWidget {
-  final VoidCallback onPressed;
-  final Widget child;
-  final ButtonStyle style;
-  final Gradient gradient;
-  final double thickness;
-
-  const MyOutlinedButton({
-    Key key,
-    this.onPressed,
-    this.child,
-    this.style,
-    this.gradient,
-    this.thickness = 2,
-  }) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    final _h = MediaQuery.of(context).size.height;
-    final _w = MediaQuery.of(context).size.width;
-    return DecoratedBox(
-      decoration: BoxDecoration(gradient: gradient),
-      child: Container(
-        decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(10),
-        ),
-        height: _h * 0.08,
-        width: _w * 0.85,
-        // color: Colors.white,
-        margin: EdgeInsets.all(thickness),
-        child: OutlinedButton(
-          onPressed: onPressed,
-          style: style,
-          child: child,
-        ),
-      ),
-    );
   }
 }
