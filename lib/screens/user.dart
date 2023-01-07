@@ -1,8 +1,5 @@
-import 'dart:html';
 import 'package:flutter/material.dart';
-import 'package:outline_gradient_button/outline_gradient_button.dart';
-import 'package:task2/welcome.dart';
-import 'package.dart';
+import 'welcome.dart';
 
 class User extends StatefulWidget {
   @override
@@ -20,8 +17,8 @@ class _UserState extends State<User> {
     final _h = MediaQuery.of(context).size.height;
     final _w = MediaQuery.of(context).size.width;
 
-    List<String> items = ["Male", "Female", "Trans"];
-    String seltectedItem = "Male";
+    List<String> items = ["Gender", "Male", "Female", "Trans"];
+    String seltectedItem = "Gender";
 
     return Scaffold(
       body: Column(

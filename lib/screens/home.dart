@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:outline_gradient_button/outline_gradient_button.dart';
-import 'package:task2/extra.dart';
-import 'package:task2/package.dart';
+import 'package:task2/screens/drop2.dart';
+import 'package:task2/screens/extra.dart';
 import 'package:flutter_advanced_drawer/flutter_advanced_drawer.dart';
-import 'package:task2/user.dart';
 import 'package:url_launcher/url_launcher.dart';
+
+import 'user.dart';
 
 class Home extends StatefulWidget {
   @override
@@ -54,7 +55,7 @@ class _HomeState extends State<Home> {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               SizedBox(
-                height: _h * 0.06,
+                height: _h * 0.02,
               ),
 ///////////////////////////////////////////////////////////////////////
               Center(
@@ -129,7 +130,7 @@ class _HomeState extends State<Home> {
                 child: OutlineGradientButton(
                   onTap: () {
                     Navigator.of(context)
-                        .push(MaterialPageRoute(builder: (context) => User()));
+                        .push(MaterialPageRoute(builder: (context) => Drop2()));
                   },
                   backgroundColor: Colors.white,
                   child: Center(child: Text('Register')),

@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:task2/home.dart';
 import 'dart:math';
+
+import 'home.dart';
 
 class Last extends StatefulWidget {
   @override

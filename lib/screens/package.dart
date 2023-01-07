@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:task2/reserve.dart';
+
+import 'reserve.dart';
 
 class Package extends StatefulWidget {
   @override
