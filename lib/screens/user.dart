@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'welcome.dart';
+import 'package:dropdown_plus/dropdown_plus.dart';
 
 class User extends StatefulWidget {
   @override
@@ -10,7 +11,7 @@ class _UserState extends State<User> {
   TextEditingController _name = TextEditingController();
   TextEditingController _phone = TextEditingController();
   TextEditingController _age = TextEditingController();
-  TextEditingController _gender = TextEditingController();
+  DropdownEditingController<String> _gender = DropdownEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -19,6 +20,9 @@ class _UserState extends State<User> {
 
     List<String> items = ["Gender", "Male", "Female", "Trans"];
     String seltectedItem = "Gender";
+    String selectedValue;
+
+    final _formKey = GlobalKey<FormState>();
 
     return Scaffold(
       body: Column(
@@ -112,7 +116,7 @@ class _UserState extends State<User> {
             width: _w * 0.85,
             decoration: BoxDecoration(
                 color: Colors.white, borderRadius: BorderRadius.circular(30.0)),
-            child: TextField(
+            child: TextFormField(
               controller: _age,
               textInputAction: TextInputAction.next,
               style: TextStyle(color: Colors.black),
@@ -130,6 +134,40 @@ class _UserState extends State<User> {
                   )),
             ),
           ),
+// ///////////////////////////////////////////////////////////////////////////////////
+//           SizedBox(
+//             height: _h * 0.01,
+//           ),
+// //////////////////////////////////////////////////////////////////////////////////
+//           Container(
+//             height: _h * 0.072,
+//             width: _w * 0.85,
+//             decoration: BoxDecoration(
+//                 color: Colors.white, borderRadius: BorderRadius.circular(30.0)),
+//             child: DropdownButtonFormField<String>(
+//               focusColor: Colors.white,
+//               decoration: InputDecoration(
+//                   labelStyle: TextStyle(color: Colors.black),
+//                   enabledBorder: OutlineInputBorder(
+//                     borderSide: BorderSide(width: 2, color: Colors.blue),
+//                     borderRadius: BorderRadius.circular(30),
+//                   ),
+//                   focusedBorder: OutlineInputBorder(
+//                     borderSide: BorderSide(width: 3, color: Colors.blue),
+//                     borderRadius: BorderRadius.circular(30),
+//                   )),
+//               value: seltectedItem,
+//               items: items
+//                   .map((item) => DropdownMenuItem<String>(
+//                       value: item,
+//                       child: Text(
+//                         item,
+//                         // style: TextStyle(fontSize: 24),
+//                       )))
+//                   .toList(),
+//               onChanged: (item) => setState(() => seltectedItem = item),
+//             ),
+//           ),
 ///////////////////////////////////////////////////////////////////////////////////
           SizedBox(
             height: _h * 0.01,
@@ -138,10 +176,20 @@ class _UserState extends State<User> {
           Container(
             height: _h * 0.072,
             width: _w * 0.85,
-            decoration: BoxDecoration(
-                color: Colors.white, borderRadius: BorderRadius.circular(30.0)),
-            child: DropdownButtonFormField<String>(
-              focusColor: Colors.white,
+            child: TextDropdownFormField(
+              options: ["Male", "Female"],
+              controller: _gender,
+              // validator: (value) {
+              //   if (value == null) {
+              //     return 'Please select gender.';
+              //   }
+              // },
+              // onChanged: (value) {
+              //   //Do something when changing the item if you want.
+              // },
+              // onSaved: (value) {
+              //   selectedValue = value.toString();
+              // },
               decoration: InputDecoration(
                   labelStyle: TextStyle(color: Colors.black),
                   enabledBorder: OutlineInputBorder(
@@ -151,17 +199,13 @@ class _UserState extends State<User> {
                   focusedBorder: OutlineInputBorder(
                     borderSide: BorderSide(width: 3, color: Colors.blue),
                     borderRadius: BorderRadius.circular(30),
-                  )),
-              value: seltectedItem,
-              items: items
-                  .map((item) => DropdownMenuItem<String>(
-                      value: item,
-                      child: Text(
-                        item,
-                        // style: TextStyle(fontSize: 24),
-                      )))
-                  .toList(),
-              onChanged: (item) => setState(() => seltectedItem = item),
+                  ),
+                  suffixIcon: Icon(
+                    Icons.arrow_drop_down,
+                    size: 32,
+                  ),
+                  labelText: "Gender"),
+              dropdownHeight: 120,
             ),
           ),
 ///////////////////////////////////////////////////////////////////////////////////
@@ -190,11 +234,15 @@ class _UserState extends State<User> {
                       primary: Colors.transparent,
                       shadowColor: Colors.transparent),
                   onPressed: () {
+                    // if (_formKey.currentState.validate()) {
+                    //   _formKey.currentState.save();
+                    // } else
                     Navigator.of(context).push(MaterialPageRoute(
                         builder: (context) => Welcome(
                               name: _name.text,
                               phone: _phone.text,
                               age: _age.text,
+                              gender: _gender.value,
                             )));
                   },
                   child: Text(
