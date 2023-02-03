@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
-
 import 'reserve.dart';
 
 class Package extends StatefulWidget {
@@ -15,40 +13,23 @@ class _PackageState extends State<Package> {
     final _w = MediaQuery.of(context).size.width;
 
     return Scaffold(
+      extendBodyBehindAppBar: false,
       appBar: AppBar(
-        leading: IconButton(
-          icon: Icon(
-            Icons.arrow_back,
-            color: Colors.cyan,
-          ),
-          onPressed: () => Navigator.pop(context),
-        ),
+        backgroundColor: Colors.cyan,
+        elevation: 0,
         title: Text(
-          "Package",
+          "Packages",
+          style: TextStyle(color: Colors.black),
         ),
-        centerTitle: true,
+        leading: IconButton(
+          icon: Icon(Icons.arrow_back, color: Colors.black),
+          onPressed: () => Navigator.of(context),
+        ),
         actions: [
-          Padding(
-            padding: EdgeInsets.only(right: _w * 0.05),
-            child: Icon(
-              Icons.menu,
-              color: Colors.cyan,
-            ),
-          )
+          IconButton(
+              icon: Icon(Icons.menu_rounded, color: Colors.black),
+              onPressed: () {})
         ],
-        // brightness: Brightness.light,
-        systemOverlayStyle: SystemUiOverlayStyle(
-          // statusBarColor: Colors.white,
-          // statusBarBrightness: Brightness.dark,
-          // systemStatusBarContrastEnforced: true,
-          statusBarIconBrightness: Brightness.light,
-        ),
-        elevation: 6.0,
-        backgroundColor: Colors.white,
-        titleTextStyle: TextStyle(
-            color: Colors.cyan, fontSize: 22, fontWeight: FontWeight.bold),
-        shadowColor: Colors.cyan,
-        shape: Border.all(color: Colors.cyan, width: 2.0),
       ),
       body: SingleChildScrollView(
         child: Column(
